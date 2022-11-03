@@ -2,42 +2,55 @@ pipeline {
     agent any 
     stages {
         stage('Build'){
+            steps
+            {
+                echo 'Build'
+            }
 
         }
         stage('Test'){
-    }
-stage('Quality Gate - Sonar Qube'){
-    steps{
+            steps{
+                echo 'Test'
+            }
+        }
+       stage('Sonarqube')
+       {
+        steps{
+            echo 'Sonarqube'
+        }
+       }
+       stage('Push to artifactory'){
+        steps{
+            echo 'push to artifctory'
+        }
+       }
+       stage('Deploy to QA'){
+        steps{
+            echo 'deploy to QA'
 
+        }
+       }
+       stage('Deploy to Prod')
+       {
+        steps{
+            echo 'Deploy to Prod'
+        }
+       }
+    }
+    post{
+        failure{
+            echo 'Failed'
+        }
+        success{
+            echo 'Success'
+        }
+        aborted{
+            echo 'aborted'
+             
+        }
+        always
+        {
+            echo 'always'
+        }
     }
 }
-#CD
-stage('Deploy to Dev'){
-    steps {
-
-    }
-}
-stage('Deploy to QA')
-{
-    steps{
-
-    }
-}
-stage('Deploy to UAT')
-{
-    steps{
-
-    }
-}
-stage('Deploy to Staging')
-{
-    steps{
-
-    }
-}
-stage('Deploy to Proud'){
-    steps{
-
-    }
-}
-    }
